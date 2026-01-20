@@ -1,24 +1,20 @@
 public class Nodo {
-    private String value;
-    private Nodo next;
+    private Nodo nextNodo;
+    private String contenuto;
 
-    public Nodo getNext(){
-        return next;
+    public String getContenuto(){
+        return contenuto;
     }
 
-    public void setNext(Nodo nextNodo){
-        next = nextNodo;
+    public Nodo getNextNodo(){
+        return nextNodo;
     }
 
-    public String getValue(){
-        return value;
+    public void setNextNodo(Nodo nextNodo){
+        this.nextNodo = nextNodo;
     }
 
-    public Nodo(String value){
-        this.value = value;
-    }
-
-    public String toString(){
-        return value;
+    public Nodo(String contenuto){
+        this.contenuto = contenuto;
     }
 }
