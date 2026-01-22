@@ -1,9 +1,8 @@
 public class Main {
     public static void main(){
         Lista lista = new Lista();
-        lista.accoda("mamma");
-        lista.accoda("casa");
-        lista.inserimento(1, "ciao");
+        lista.inserimento(0, "casa");
+        lista.accoda("ciao");
         System.out.println(lista);
     }
 }

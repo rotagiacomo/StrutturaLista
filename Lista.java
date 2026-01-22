@@ -1,54 +1,47 @@
 public class Lista {
-    private Nodo head = new Nodo(null);
-    private Nodo cursor;
-    private int size = 0;
-
-    private String visita(){
-        String contenuto = cursor.getContenuto();
-        cursor = cursor.getNextNodo();
-        return contenuto;
-    }
+    private Nodo head;
+    private int size;
 
     public String lettura(int indice){
-        cursor = head.getNextNodo();
+        Nodo cursor = head.getNextNodo();
         String contenuto = null;
         for (int i=0; i<=indice; i++){
-            contenuto = visita();
+            cursor = cursor.getNextNodo();
         }
+        contenuto = cursor.getContenuto();
         return contenuto;
     }
 
     public void accoda(String valore){
-        cursor = head;
+        Nodo cursor = head;
         while (cursor.getNextNodo() != null){
-            visita();
+            cursor = cursor.getNextNodo();
         }
-        cursor.setNextNodo(new Nodo(valore));
-        size++;
+        aggiungiNodo(valore, cursor);
     }
 
     public void inserimento(int indice, String valore){
-        cursor = head.getNextNodo();
-        for(int i=0; i<indice-1; i++){
+        Nodo cursor = head;
+        for(int i=0; i<indice; i++){
             if (cursor.getNextNodo() == null) {
-                aggiungiNodo(null);
+                aggiungiNodo(null, cursor);
             }
             cursor = cursor.getNextNodo();
         }
         if (cursor.getNextNodo() == null) {
-            aggiungiNodo(valore);
+            aggiungiNodo(valore, cursor);
         }else{
             cursor.getNextNodo().setContenuto(valore);
         }
     }
 
-    private void aggiungiNodo(String contenuto){
+    private void aggiungiNodo(String contenuto, Nodo cursor){
         cursor.setNextNodo(new Nodo(contenuto));
         size++;
     }
 
     public String toString(){
-        cursor = head.getNextNodo();
+        Nodo cursor = head.getNextNodo();
         String string = "";
         for(int i=0; i<size; i++){
             string += cursor.getContenuto();
@@ -62,5 +55,10 @@ public class Lista {
 
     public int getSize(){
         return size;
+    }
+
+    public Lista(){
+        head = new Nodo(null);
+        size = 0;
     }
 }
