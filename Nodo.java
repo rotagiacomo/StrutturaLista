@@ -14,7 +14,15 @@ public class Nodo {
         this.nextNodo = nextNodo;
     }
 
+    public void setContenuto(String contenuto){
+        this.contenuto = contenuto;
+    }
+
     public Nodo(String contenuto){
         this.contenuto = contenuto;
+    }
+
+    public String toString(){
+        return contenuto;
     }
 }

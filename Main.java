@@ -3,6 +3,7 @@ public class Main {
         Lista lista = new Lista();
         lista.accoda("mamma");
         lista.accoda("casa");
-        System.out.println(lista.lettura(1));
+        lista.inserimento(1, "ciao");
+        System.out.println(lista);
     }
 }

@@ -27,6 +27,39 @@ public class Lista {
         size++;
     }
 
+    public void inserimento(int indice, String valore){
+        cursor = head.getNextNodo();
+        for(int i=0; i<indice-1; i++){
+            if (cursor.getNextNodo() == null) {
+                aggiungiNodo(null);
+            }
+            cursor = cursor.getNextNodo();
+        }
+        if (cursor.getNextNodo() == null) {
+            aggiungiNodo(valore);
+        }else{
+            cursor.getNextNodo().setContenuto(valore);
+        }
+    }
+
+    private void aggiungiNodo(String contenuto){
+        cursor.setNextNodo(new Nodo(contenuto));
+        size++;
+    }
+
+    public String toString(){
+        cursor = head.getNextNodo();
+        String string = "";
+        for(int i=0; i<size; i++){
+            string += cursor.getContenuto();
+            if (i<size-1) {
+                string += ", ";
+            }
+            cursor = cursor.getNextNodo();
+        }
+        return string;
+    }
+
     public int getSize(){
         return size;
     }
