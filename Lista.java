@@ -4,7 +4,7 @@ public class Lista {
 
     public String lettura(int indice){
         Nodo cursor = raggiungiIndice(indice);
-        return cursor.getContenuto();
+        return cursor.toString();
     }
 
     public void accoda(String valore){
@@ -51,7 +51,7 @@ public class Lista {
     public int ricerca(String valore){
         Nodo cursor = head.getNextNodo();
         int indice = 0;
-        while (cursor.getNextNodo() != null && cursor.getContenuto() == null || !cursor.getContenuto().equals(valore)) {
+        while (cursor.getNextNodo() != null && cursor.toString() == null || !cursor.toString().equals(valore)) {
             cursor = cursor.getNextNodo();
             indice++;
         }
@@ -74,7 +74,7 @@ public class Lista {
         Nodo cursor = head.getNextNodo();
         String string = "";
         for(int i=0; i<size; i++){
-            string += cursor.getContenuto();
+            string += cursor.toString();
             if (i<size-1) {
                 string += ", ";
             }

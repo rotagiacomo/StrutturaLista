@@ -2,10 +2,6 @@ public class Nodo {
     private Nodo nextNodo;
     private String contenuto;
 
-    public String getContenuto(){
-        return contenuto;
-    }
-
     public Nodo getNextNodo(){
         return nextNodo;
     }
