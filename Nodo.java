@@ -22,6 +22,8 @@ public class Nodo {
         this.contenuto = contenuto;
     }
 
+    public Nodo(){}
+
     public String toString(){
         return contenuto;
     }

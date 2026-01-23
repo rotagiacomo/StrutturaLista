@@ -3,20 +3,12 @@ public class Lista {
     private int size;
 
     public String lettura(int indice){
-        Nodo cursor = head.getNextNodo();
-        String contenuto = null;
-        for (int i=0; i<=indice; i++){
-            cursor = cursor.getNextNodo();
-        }
-        contenuto = cursor.getContenuto();
-        return contenuto;
+        Nodo cursor = raggiungiIndice(indice);
+        return cursor.getContenuto();
     }
 
     public void accoda(String valore){
-        Nodo cursor = head;
-        while (cursor.getNextNodo() != null){
-            cursor = cursor.getNextNodo();
-        }
+        Nodo cursor = raggiungiIndice(size-1);
         aggiungiNodo(valore, cursor);
     }
 
@@ -35,9 +27,47 @@ public class Lista {
         }
     }
 
+    private Nodo raggiungiIndice(int indice){
+        Nodo cursor = head;
+        for(int i = 0; i<=indice; i++){
+            cursor = cursor.getNextNodo();
+        }
+        return cursor;
+    }
+
     private void aggiungiNodo(String contenuto, Nodo cursor){
         cursor.setNextNodo(new Nodo(contenuto));
         size++;
+    }
+
+    public void eliminazione(int indice){
+        Nodo cursor = raggiungiIndice(indice-1);
+        Nodo temp = cursor;
+        cursor = cursor.getNextNodo();
+        temp.setNextNodo(cursor.getNextNodo());
+        size--;
+    }
+
+    public int ricerca(String valore){
+        Nodo cursor = head.getNextNodo();
+        int indice = 0;
+        while (cursor.getNextNodo() != null && cursor.getContenuto() == null || !cursor.getContenuto().equals(valore)) {
+            cursor = cursor.getNextNodo();
+            indice++;
+        }
+        return indice;
+    }
+
+    public void eliminazioneCompleta(String valore){
+        boolean condition = true;
+        while (condition) {
+            try{
+                int indice = ricerca(valore);
+                eliminazione(indice);
+            }catch(NullPointerException exception){
+                condition = false;
+            }
+        }
     }
 
     public String toString(){
