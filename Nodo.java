@@ -6,6 +6,10 @@ public class Nodo {
         return nextNodo;
     }
 
+    public String getContenuto(){
+        return contenuto;
+    }
+
     public void setNextNodo(Nodo nextNodo){
         this.nextNodo = nextNodo;
     }
