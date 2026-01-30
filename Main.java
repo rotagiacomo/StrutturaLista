@@ -5,5 +5,7 @@ public class Main {
         lista.inserimentoInOrdineAlfabetico("casa");
         lista.inserimentoInOrdineAlfabetico("aba");
         System.out.println(lista);
+        lista.inserimento(0, "bab");
+        System.out.println(lista);
     }
 }

@@ -7,9 +7,10 @@ public class Lista {
         return cursor.toString();
     }
 
-    public void accoda(String valore){
-        Nodo cursor = raggiungiIndice(size-1);
-        aggiungiNodo(valore, cursor);
+    public void accodaNodo(Nodo nodo, Nodo cursor){
+        nodo.setNextNodo(cursor.getNextNodo());
+        cursor.setNextNodo(nodo);
+        size++;
     }
 
     public void inserimento(int indice, String valore){
@@ -21,7 +22,7 @@ public class Lista {
             cursor = cursor.getNextNodo();
         }
         if (cursor.getNextNodo() == null) {
-            aggiungiNodo(valore, cursor);
+            aggiungiNodo(new Nodo(valore), cursor);
         }else{
             cursor.getNextNodo().setContenuto(valore);
         }
@@ -35,8 +36,8 @@ public class Lista {
         return cursor;
     }
 
-    private void aggiungiNodo(String contenuto, Nodo cursor){
-        cursor.setNextNodo(new Nodo(contenuto));
+    private void aggiungiNodo(Nodo nodo , Nodo cursor){
+        cursor.setNextNodo(nodo);
         size++;
     }
 
@@ -71,33 +72,16 @@ public class Lista {
     }
 
     public void inserimentoInOrdineAlfabetico(String valore){
-        Nodo cursor = head.getNextNodo();
-        int i=0;
-        for(; i<size; i++){
+        Nodo cursor = head;
+        for(int i=0; i<size && cursor.getContenuto() != null; i++){
             int risultatoCompare = valore.compareToIgnoreCase(cursor.getContenuto());
             if (risultatoCompare < 0) {
                 break;
             }
             cursor=cursor.getNextNodo();
         }
-        raggiungiIndice(i);
         Nodo newNodo = new Nodo(valore);
-        newNodo.setNextNodo(cursor);
-        cursor.setNextNodo(cursor);
-    }
-
-    private int trovaIndice(String valore){
-        int indice = 0;
-        Nodo cursor = head.getNextNodo();
-        for(int i=0; i<size; i++){
-            int risultatoCompare = valore.compareToIgnoreCase(cursor.getContenuto());
-            if (risultatoCompare < 0) {
-                indice = i;
-                break;
-            }
-            cursor=cursor.getNextNodo();
-        }
-        return indice;
+        accodaNodo(newNodo, cursor);
     }
 
     public String toString(){
